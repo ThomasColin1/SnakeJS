@@ -11,7 +11,12 @@ var posPomme;
 var dir2;
 
 function Jeu() {
-    pos = [0]
+    for(var k=0;k<100;k++){
+        var kstring=k.toString();
+        document.getElementById(kstring).style.backgroundColor = "green";
+        document.getElementById(kstring).style.backgroundImage = "";
+    }
+    pos = [1,0]
     dir = 1;
     dir2 = 1;
     var posString = pos[0].toString();
@@ -44,7 +49,7 @@ function Jeu() {
         }
         if (dir == 4){
             dir2=dir;
-            if (pos[0] > 10) {
+            if (pos[0] > 9) {
                 pos.unshift(pos[0] - 10);
             } else {
                 pos.unshift(pos[0] + 90);
@@ -64,8 +69,14 @@ function Jeu() {
         posString = pos[pos.length - 1].toString();
         document.getElementById(posString).style.backgroundColor = "green";
         pos.pop();
-        posString = pos[0].toString();
+        posString = pos[1].toString();
         document.getElementById(posString).style.backgroundColor = "blue";
+        document.getElementById(posString).style.backgroundImage = "";
+        posString = pos[0].toString();
+        //changeBackground(document.getElementById(posString), "http://ghost.gs.ganal.ch/skins/common/images/gs.png");
+        document.getElementById(posString).style.backgroundImage = "url('tete_serpent.png')";
+        document.getElementById(posString).style.backgroundImage = "url('tete_serpent.png')";
+    
     }, 200);
 }
 
