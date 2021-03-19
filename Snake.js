@@ -67,9 +67,6 @@ function Jeu() {
         posString = pos[0].toString();
         document.getElementById(posString).style.backgroundColor = "blue";
     }, 200);
-    for(var k=0;k<100;k++){
-        document.getElementById(k.toString()).style.backgroundColor = "green";
-    }
 }
 
 
