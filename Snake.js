@@ -17,33 +17,33 @@ function Jeu() {
     var posString = pos[0].toString();
     document.getElementById(posString).style.backgroundColor = "blue";
     posPomme = Pomme();
-    setInterval(function() {
-        if ((dir == 1) && (Math.abs(dir - dir2) != 2)) {
-            dir2 = dir;
+    var boucle = setInterval(function() {
+        if (dir == 1) {
+            dir2=dir;
             if ((pos[0] % 10) != 9) {
                 pos.unshift(pos[0] + 1);
             } else {
                 pos.unshift(pos[0] - 9);
             }
         }
-        if ((dir == 2) && (Math.abs(dir - dir2) != 2)) {
-            dir2 = dir;
+        if (dir == 2) {
+            dir2=dir;
             if (pos[0] < 90) {
                 pos.unshift(pos[0] + 10);
             } else {
                 pos.unshift(pos[0] - 90);
             }
         }
-        if ((dir == 3) && (Math.abs(dir - dir2) != 2)) {
-            dir2 = dir;
+        if (dir == 3) {
+            dir2=dir;
             if ((pos[0] % 10) != 0) {
                 pos.unshift(pos[0] - 1);
             } else {
                 pos.unshift(pos[0] + 9);
             }
         }
-        if ((dir == 4) && (Math.abs(dir - dir2) != 2)) {
-            dir2 = dir;
+        if (dir == 4){
+            dir2=dir;
             if (pos[0] > 10) {
                 pos.unshift(pos[0] - 10);
             } else {
@@ -57,13 +57,19 @@ function Jeu() {
                 posPomme = Pomme();
             }
         }
+        if(pos.slice(1,pos.length-1).includes(pos[0])){
+            alert("MORT !!!! Score : "+pos.length);
+            clearInterval(boucle);
+        }
         posString = pos[pos.length - 1].toString();
         document.getElementById(posString).style.backgroundColor = "green";
         pos.pop();
         posString = pos[0].toString();
         document.getElementById(posString).style.backgroundColor = "blue";
     }, 200);
-
+    for(var k=0;k<100;k++){
+        document.getElementById(k.toString()).style.backgroundColor = "green";
+    }
 }
 
 
@@ -76,15 +82,27 @@ window.addEventListener("keydown", function(event) {
     switch (event.key) {
         case "ArrowDown":
             dir = 2;
+            if(Math.abs(dir - dir2)==2){
+                dir=dir2;
+            }
             break;
         case "ArrowUp":
             dir = 4;
+            if(Math.abs(dir - dir2)==2){
+                dir=dir2;
+            }
             break;
         case "ArrowLeft":
             dir = 3;
+            if(Math.abs(dir - dir2)==2){
+                dir=dir2;
+            }
             break;
         case "ArrowRight":
             dir = 1;
+            if(Math.abs(dir - dir2)==2){
+                dir=dir2;
+            }
             break;
         case "Enter":
             alert("yoooo");
